@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NutriChef</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="icon" type="image/png" href="static/img/favicon-32x32.png" />
+  </head>
+  <body>
+    <header></header>
+    <nav>
+      <a onclick="showSection('receitas')"><i class="fas fa-utensils"></i> Receitas</a>
+      <a onclick="showSection('compartilhar-receitas')"><i class="fas fa-clipboard"></i> Adicionar Receitas</a>
+      <a onclick="showSection('calculadora')"><i class="fas fa-calculator"></i> Cálculos Nutricionais</a>
+      <a onclick="showSection('conta')"><i class="fas fa-user"></i> Conta</a>
+    </nav>
+
+    <div class="container">
+      <section id="receitas" class="recipes">
+        <h2>Receitas</h2>
+        <div class="search-bar">
+          <input type="text" id="search-input" placeholder="Pesquisar Receita..." oninput="filterRecipes()" />
+        </div>
+        <div class="recipe-list" id="recipe-list">
+          <!-- As receitas serão carregadas aqui -->
+        </div>
+      </section>
+      <section id="compartilhar-receitas" class="share-recipes">
+        <h2>Compartilhar Receita</h2>
+        <form class="recipe-form" onsubmit="submitRecipe(event)">
+          <input type="text" id="recipe-name" name="recipe-name" placeholder="Nome da Receita" required />
+          <textarea id="recipe-description" name="recipe-description" placeholder="Descrição da Receita" required></textarea>
+          <div class="form-group">
+            <textarea id="recipe-ingredients" name="recipe-ingredients" placeholder="Digite seus ingredientes" required></textarea>
+          </div>
+          <div class="recipe-ingredients">
+            <ul id="ingredients-list">
+              <!-- Os ingredientes serão adicionados aqui -->
+            </ul>
+          </div>
+          <textarea id="recipe-steps" name="recipe-steps" placeholder="Modo de Preparo" required></textarea><br />
+          <button type="submit" id="Enviar-Receita">Enviar Receita</button>
+        </form>
+      </section>
+
+      <section id="calculadora" class="calculator">
+        <h2>Cálculos Nutricionais</h2>
+        <form id="nutritionForm" onsubmit="calculateNutrition(event)">
+          <label for="ingredient">Ingrediente:</label>
+          <input type="text" id="ingredient" placeholder="Digite um ingrediente" autocomplete="on" />
+          <div id="suggestions"></div><br />
+          <!-- Onde colocar a parte de adição de ingrediente -->
+          <label for="quantity">Quantidade:</label>
+          <input type="number" id="quantity" name="quantity" required /> <br /><br />
+
+          <button type="submit">Calcular</button>
+        </form>
+        <div id="result"></div>
+      </section>
+
+      <section id="conta" class="contact">
+        <h2>Minha Conta</h2>
+        <div class="account-info">
+          <p>
+            <strong>Nome:</strong> <span id="account-name">Usuário</span>
+          </p>
+          <p>
+            <strong>Email:</strong> <span id="account-email">usuario@exemplo.com</span>
+          </p>
+        </div>
+        <button class="form-button" onclick="logout()">Logout</button>
+      </section>
+
+      <section id="detalhes-receita" class="recipe-details">
+        <h2>Detalhes da Receita</h2>
+        <div id="recipe-detail" class="recipe-detail">
+          <!-- Detalhes da receita serão carregados aqui -->
+        </div>
+        <button class="form-button" onclick="showSection('receitas')">Voltar</button>
+      </section>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 NutriChef. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>
