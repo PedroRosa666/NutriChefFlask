@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - NutriChef</title>
+    <!-- Link para o Font Awesome -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="icon" type="image/png" href="static/img/favicon-32x32.png" />
+  </head>
+  <body class="login-page">
+    <div class="login-container">
+      <form id="loginForm" method="POST" class="login-form">
+        <h2>Login</h2>
+        <div class="form-group">
+          <label for="username">Usuário:</label>
+          <input type="text" id="username" name="username" class="form-input" placeholder="Digite seu usuário" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Senha:</label>
+          <input type="password" id="password" name="password" class="form-input" placeholder="Digite sua senha" required />
+        </div>
+        <button type="submit" class="form-button">Entrar</button>
+      </form>
+      <p>Não tem uma conta? <a href="{{ url_for('cadastro') }}">Faça seu cadastro</a></p>
+      <p>Esqueceu sua senha? <a href="">Clique aqui</a></p>
+      <div class="social-login">
+        <button><i class="fab fa-facebook-f"></i></button>
+        <button><i class="fab fa-google"></i></button>
+        <button><i class="fab fa-microsoft"></i></button>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+  </body>
+</html>

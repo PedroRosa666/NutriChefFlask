@@ -1,0 +1,47 @@
+.login-container {
+    max-width: 400px;
+    width: 90%;
+    height: auto;
+    padding: 20px;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        margin: 20px auto;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .form-button {
+        font-size: 0.9rem;
+    }
+}
+
+.password-strength {
+    margin-top: 10px;
+    height: 5px;
+    background-color: #ddd;
+    border-radius: 5px;
+    transition: width 0.3s ease-in-out;
+}
+
+.password-strength.weak {
+    background-color: red;
+    width: 33%;
+}
+
+.password-strength.medium {
+    background-color: orange;
+    width: 66%;
+}
+
+.password-strength.strong {
+    background-color: green;
+    width: 100%;
+}

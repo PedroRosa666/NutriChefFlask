@@ -1,0 +1,121 @@
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    width: 96%;
+}
+
+.form-button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+.form-button:hover {
+    background-color: var(--hover-color);
+}
+
+.login-form .form-input::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+.form-input2 {
+    margin-bottom: 7px;
+    padding: 7px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    width: 96%;
+}
+
+.recipe-form input, .recipe-form textarea, .contact-form input, .contact-form textarea, .nutrition-form input {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    width: 48%;
+}
+
+.recipe-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.recipe-card {
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    width: calc(33.333% - 20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+}
+
+.recipe-card h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.recipe-detail {
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-detail h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.search-bar {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.search-bar input {
+    padding: 10px;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 600px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+.recipe-ingredients ul {
+    list-style-type: disc; /* Bolinhas pretas */
+    padding-left: 20px; /* Espaçamento à esquerda */
+}
+
+.recipe-ingredients li {
+    margin-bottom: 5px; /* Espaçamento entre os itens da lista */
+}
+
+#ingredients-list {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+#ingredients-list li {
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
