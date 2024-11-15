@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     background: var(--login-bg-image) no-repeat center center/cover;
 }
 
@@ -50,3 +49,4 @@
 .social-login button:hover i {
     color: var(--hover-color);
 }
+

@@ -13,12 +13,13 @@
 .form-button {
     padding: 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     background-color: var(--primary-color);
     color: white;
     cursor: pointer;
-    width: 100%;
+    width: 30%;
 }
+
 
 .form-button:hover {
     background-color: var(--hover-color);
@@ -29,6 +30,7 @@
     font-style: italic;
 }
 
+
 .form-input2 {
     margin-bottom: 7px;
     padding: 7px;
@@ -37,12 +39,16 @@
     width: 96%;
 }
 
-.recipe-form input, .recipe-form textarea, .contact-form input, .contact-form textarea, .nutrition-form input {
-    margin-bottom: 10px;
+.recipe-form input,
+.recipe-form textarea,
+.contact-form input,
+.contact-form textarea,
+.nutrition-form input {
+    margin-bottom: 5px;
     padding: 10px;
     font-size: 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
+    border: 3px solid var(--border-color);
+    border-radius: 25px;
     width: 48%;
 }
 
@@ -102,12 +108,15 @@
 }
 
 .recipe-ingredients ul {
-    list-style-type: disc; /* Bolinhas pretas */
-    padding-left: 20px; /* Espaçamento à esquerda */
+    list-style-type: disc;
+    /* Bolinhas pretas */
+    padding-left: 20px;
+    /* Espaçamento à esquerda */
 }
 
 .recipe-ingredients li {
-    margin-bottom: 5px; /* Espaçamento entre os itens da lista */
+    margin-bottom: 5px;
+    /* Espaçamento entre os itens da lista */
 }
 
 #ingredients-list {
@@ -118,4 +127,78 @@
 #ingredients-list li {
     margin-bottom: 5px;
     color: var(--text-color);
+}
+
+#recipe-image {
+    display: flex;
+    flex-direction: column;
+    /* Alinha os itens em coluna */
+    align-items: flex-end;
+    /* Alinha os itens à direita */
+    position: relative;
+    /* Mantém a posição relativa */
+    float: right;
+    /* Mantém o contêiner à direita */
+    top: -280px;
+    /* Ajuste esse valor para mover o item para cima conforme necessário */
+    width: 40vw;
+    /* Define a largura como 40% da largura da viewport */
+    height: 25vw;
+    /* Define a altura igual à largura para manter o formato quadrado */
+    max-width: 100%;
+    /* Garante que o elemento não ultrapasse a largura do contêiner */
+    max-height: 100vh;
+    /* Garante que o elemento não ultrapasse a altura da viewport */
+    overflow: hidden;
+    /* Esconde o conteúdo que excede o quadrado */
+}
+
+#recipe-image img {
+    width: 100%;
+    /* A imagem ocupa 100% da largura do quadrado */
+    height: auto;
+    /* Mantém a proporção da imagem */
+    object-fit: contain;
+    /* Garante que a imagem preencha o quadrado sem distorção */
+    margin-bottom: 10px;
+    /* Espaço abaixo da imagem para o botão */
+}
+
+#remove-image {
+    margin-top: 0;
+    /* Remove o espaço acima do botão */
+    display: flex;
+    /* Mantém o botão em flex */
+    justify-content: center;
+    /* Centraliza o botão */
+    align-items: center;
+    /* Alinha o conteúdo do botão ao centro */
+}
+
+/* Estilo do placeholder para input e textarea */
+input::placeholder,
+textarea::placeholder {
+    /* color: rgb(86, 21, 21); Cor do texto do placeholder */
+    /*font-style: italic; Estilo do texto do placeholder */
+    text-align: center;
+    /* Estilo do texto do placeholder */
+}
+
+/* Estilo do placeholder quando o input ou textarea está focado */
+input:focus::placeholder,
+textarea:focus::placeholder {
+    color: rgb(103, 48, 48);
+    /* Cor do texto do placeholder ao focar */
+}
+
+
+input#ingredient{
+    width: 20%;
+    height: 20%;
+
+}
+
+input#quantity{
+    width: 20%;
+    height: 20%;
 }

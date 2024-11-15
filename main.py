@@ -36,7 +36,7 @@ def login():
 
         if user:
             session['username'] = username
-            session['user_id'] = user['id']  # Certifique-se de que a tabela tem um campo 'id'
+            session['user_id'] = user['id'] 
             return redirect(url_for('home'))
         else:
             return 'Usuário ou senha incorretos', 401

@@ -1,4 +1,6 @@
-button, .form-button, .remove-button {
+button,
+.form-button,
+.remove-button {
     padding: 10px 20px;
     font-size: 1rem;
     color: #fff;
@@ -10,9 +12,11 @@ button, .form-button, .remove-button {
     transition: all 0.3s ease;
 }
 
-button:hover, .form-button:hover, .remove-button:hover {
+button:hover,
+.form-button:hover,
+.remove-button:hover {
     background-image: linear-gradient(to right, var(--hover-color), var(--primary-color));
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 8px rgba(223, 117, 117, 0.15);
 }
 
 .remove-button {
@@ -25,3 +29,9 @@ button:hover, .form-button:hover, .remove-button:hover {
 .remove-button:hover {
     background-color: var(--hover-color);
 }
+
+
+.enter-button {}
+
+
+.cadastro-button {}

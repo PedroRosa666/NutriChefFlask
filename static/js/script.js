@@ -249,3 +249,33 @@ function displayNutritionResults(data) {
 }
 
 
+// função para colocar a imagem na tela após a seleção
+document.getElementById('image-upload').addEventListener('change', function (event) {
+    const file = event.target.files[0]; // Pega o primeiro arquivo selecionado
+    if (file) {
+        const reader = new FileReader(); // Cria um novo FileReader
+        reader.onload = function (e) {
+            const imgElement = document.getElementById('recipe-image-preview');
+            imgElement.src = e.target.result; // Define a fonte da imagem como o resultado do FileReader
+            imgElement.style.display = 'block'; // Mostra a imagem
+
+            // Mostra o botão de excluir imagem
+            const removeButton = document.getElementById('remove-image');
+            removeButton.style.display = 'block';
+        }
+        reader.readAsDataURL(file); // Lê o arquivo como URL de dados
+    }
+});
+
+// Adiciona evento de clique para o botão de excluir imagem
+document.getElementById('remove-image').addEventListener('click', function () {
+    const imgElement = document.getElementById('recipe-image-preview');
+    imgElement.src = ''; // Limpa a fonte da imagem
+    imgElement.style.display = 'none'; // Esconde a imagem
+
+    // Esconde o botão de excluir imagem
+    this.style.display = 'none';
+
+    // Limpa o campo de upload
+    document.getElementById('image-upload').value = '';
+});

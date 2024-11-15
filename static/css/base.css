@@ -6,7 +6,8 @@
     --text-color: #333;
     --border-color: #ccc;
     --input-bg-color: #f9f9f9;
-    --login-bg-image: url('../images/background.jpg'); /* Caminho para sua imagem de fundo */
+    --login-bg-image: url('../images/background.jpg');
+    /* Caminho para sua imagem de fundo */
 }
 
 body {
@@ -83,11 +84,25 @@ section h2 {
     font-size: 2rem;
     margin-bottom: 20px;
     color: var(--primary-color);
+    display: flex;
+}
+
+.recipes h2 {
+    display: flex;
+    justify-content: center;
+
+}
+
+.share-recipes h2 {
+    display: flex;
+    margin-left: 125px;
+
 }
 
 /* Rodapé */
 footer {
-    background-color: #ffcc80;
+    /*#ffcc80*/
+    background-color: #d1cccc;
     padding: 1px;
     text-align: center;
     position: fixed;

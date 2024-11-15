@@ -28,6 +28,7 @@
           <!-- As receitas serão carregadas aqui -->
         </div>
       </section>
+
       <section id="compartilhar-receitas" class="share-recipes">
         <h2>Compartilhar Receita</h2>
         <form class="recipe-form" onsubmit="submitRecipe(event)">
@@ -37,11 +38,16 @@
             <textarea id="recipe-ingredients" name="recipe-ingredients" placeholder="Digite seus ingredientes" required></textarea>
           </div>
           <div class="recipe-ingredients">
-            <ul id="ingredients-list">
-              <!-- Os ingredientes serão adicionados aqui -->
-            </ul>
+            <ul id="ingredients-list"></ul>
           </div>
           <textarea id="recipe-steps" name="recipe-steps" placeholder="Modo de Preparo" required></textarea><br />
+          <div class="form-group">
+            <input type="file" id="image-upload" accept="image/*" />
+            <div id="recipe-image">
+              <img id="recipe-image-preview" src="" alt="Preview da Receita" style="display:none;" />
+              <button type="button" id="remove-image" style="display:none;">Excluir Imagem</button>
+            </div>
+          </div>
           <button type="submit" id="Enviar-Receita">Enviar Receita</button>
         </form>
       </section>
@@ -54,21 +60,20 @@
           <div id="suggestions"></div><br />
           <!-- Onde colocar a parte de adição de ingrediente -->
           <label for="quantity">Quantidade:</label>
-          <input type="number" id="quantity" name="quantity" required /> <br /><br />
-
+          <input type="number" id="quantity" name="quantity" placeholder="Digite a quantidade" required /> <br /><br />
           <button type="submit">Calcular</button>
+          <button type="button" class="ingredient-add">Adicionar ingredinte</button>
         </form>
         <div id="result"></div>
       </section>
-
       <section id="conta" class="contact">
         <h2>Minha Conta</h2>
         <div class="account-info">
           <p>
-            <strong>Nome:</strong> <span id="account-name">Usuário</span>
+            <strong>Nome:</strong> <span id="account-name"></span>
           </p>
           <p>
-            <strong>Email:</strong> <span id="account-email">usuario@exemplo.com</span>
+            <strong>Email:</strong> <span id="account-email"></span>
           </p>
         </div>
         <button class="form-button" onclick="logout()">Logout</button>
@@ -79,7 +84,7 @@
         <div id="recipe-detail" class="recipe-detail">
           <!-- Detalhes da receita serão carregados aqui -->
         </div>
-        <button class="form-button" onclick="showSection('receitas')">Voltar</button>
+        <button class="form-button-detail" onclick="showSection('receitas')"><i class="fas fa-arrow-left"></i> Retornar as receitas</button>
       </section>
     </div>
 

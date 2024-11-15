@@ -22,10 +22,14 @@
           <label for="password">Senha:</label>
           <input type="password" id="password" name="password" class="form-input" placeholder="Digite sua senha" required />
         </div>
-        <button type="submit" class="form-button">Entrar</button>
+        <button type="submit" class="enter-button">Entrar</button>
       </form>
-      <p>Não tem uma conta? <a href="{{ url_for('cadastro') }}">Faça seu cadastro</a></p>
-      <p>Esqueceu sua senha? <a href="">Clique aqui</a></p>
+      <p>
+        Não tem uma conta? <a href="{{ url_for('cadastro') }}">Faça seu cadastro</a>
+      </p>
+      <p>
+        Esqueceu sua senha? <a href="">Clique aqui</a>
+      </p>
       <div class="social-login">
         <button><i class="fab fa-facebook-f"></i></button>
         <button><i class="fab fa-google"></i></button>
