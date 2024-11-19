@@ -60,7 +60,9 @@ function loadRecipes() {
                 recipeCard.innerHTML = `
                     <h3>${recipe.name}</h3>
                     <p>${recipe.description}</p>
-                    <button class="remove-button" onclick="deleteRecipe(${recipe.id})">Excluir</button>`;
+                    <button class="edit-button" onclick="editRecipe(${recipe.id})">Editar</button>
+                    <button class="remove-button" onclick="deleteRecipe(${recipe.id})">Excluir</button>
+                `;
                 recipeCard.onclick = (event) => {
                     if (event.target.tagName !== 'BUTTON') {
                         showRecipeDetails(recipe);
@@ -71,6 +73,12 @@ function loadRecipes() {
         })
         .catch(error => console.error('Erro ao carregar receitas:', error));
 }
+
+
+function editRecipe(recipeId) {
+    window.location.href = `/editar_receita/${recipeId}`; // Redireciona para a página de edição
+}
+
 
 function deleteRecipe(recipeId) {
     fetch(`/delete_recipe/${recipeId}`, {

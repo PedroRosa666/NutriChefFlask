@@ -22,8 +22,8 @@ button:hover,
 .remove-button {
     background-color: #d84315;
     color: #fff;
-    padding: 5px 10px;
     margin-top: 10px;
+
 }
 
 .remove-button:hover {

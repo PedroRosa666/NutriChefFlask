@@ -110,3 +110,74 @@ footer {
     bottom: 0;
     border-top: 2px solid var(--primary-color);
 }
+
+body.editar-receita {
+    display: flex; /* Usando Flexbox */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    height: 100vh; /* Altura total da viewport */
+    margin: 0; /* Remove margens padrão */
+    background-color: var(--background-color); /* Cor de fundo */
+}
+
+.container-editarReceita {
+    padding: 40px; /* Aumentar o padding para mais espaço interno */
+    border: 1px solid var(--border-color);
+    border-radius: 10px; /* Bordas arredondadas */
+    width: 90%; /* Largura responsiva */
+    max-width: 500px; /* Largura máxima */
+    background-color: #fff; /* Fundo branco para o container */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    display: flex;
+    flex-direction: column; /* Para empilhar os elementos verticalmente */
+}
+
+.container-editarReceita label {
+    margin-top: 15px; /* Espaçamento entre os labels e os inputs */
+    font-weight: bold; /* Texto em negrito para labels */
+    color: var(--text-color); /* Cor do texto */
+}
+
+.container-editarReceita input,
+.container-editarReceita textarea {
+    width: 100%; /* Largura total para os inputs e textareas */
+    padding: 12px; /* Padding interno para conforto */
+    margin-top: 5px; /* Espaçamento acima dos inputs */
+    margin-bottom: 15px; /* Espaçamento abaixo dos inputs */
+    border: 1px solid var(--border-color); /* Borda padrão */
+    border-radius: 5px; /* Bordas arredondadas */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transições suaves */
+    font-size: 1rem; /* Tamanho da fonte */
+}
+
+.container-editarReceita input:focus,
+.container-editarReceita textarea:focus {
+    border-color: var(--primary-color); /* Muda a cor da borda ao focar */
+    box-shadow: 0 0 5px rgba(223, 27, 27, 0.5); /* Sombra ao focar */
+    outline: none; /* Remove o contorno padrão */
+}
+
+.container-editarReceita button {
+    background-color: var(--primary-color); /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    padding: 12px; /* Padding do botão */
+    border: none; /* Sem borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    transition: background-color 0.3s; /* Transição suave para hover */
+    margin-top: 10px; /* Margem superior para espaçamento */
+    font-size: 1rem; /* Tamanho da fonte */
+}
+
+.container-editarReceita button:hover {
+    background-color: var(--hover-color); /* Cor ao passar o mouse */
+}
+
+a {
+    text-align: center;
+    display: block; /* Faz o link ocupar toda a largura */
+    margin-top: 20px; /* Margem acima do link */
+    color: var(--primary-color); /* Cor do link */
+    text-decoration: none; /* Remove sublinhado */
+    font-weight: bold; /* Texto em negrito */
+}

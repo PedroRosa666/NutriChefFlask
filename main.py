@@ -51,7 +51,6 @@ def cadastro():
         username = request.form['username']
         password = request.form['password']
         confirm_password = request.form['confirm-password']
-
         if password != confirm_password:
             return 'As senhas não coincidem', 400
 
@@ -139,6 +138,40 @@ def delete_recipe(recipe_id):
         print(f'Erro ao excluir a receita: {e}')
         return jsonify({'error': 'Erro ao excluir a receita'}), 500
 
+
+@app.route('/editar_receita/<int:recipe_id>', methods=['GET', 'POST'])
+def editar_receita(recipe_id):
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    db = connect_db()
+    cursor = db.cursor(dictionary=True)
+
+    # Buscando a receita para editar
+    cursor.execute('SELECT * FROM recipes WHERE id = %s AND user_id = %s', (recipe_id, session['user_id']))
+    recipe = cursor.fetchone()
+
+    if not recipe:
+        db.close()
+        return 'Receita não encontrada ou você não tem permissão para editá-la.', 404
+
+    if request.method == 'POST':
+        # Recebendo os dados do formulário
+        name = request.form['name']
+        description = request.form['description']
+        ingredients = request.form['ingredients']
+        steps = request.form['steps']
+
+        # Atualizando os dados da receita no banco
+        cursor.execute('UPDATE recipes SET name = %s, description = %s, ingredients = %s, steps = %s WHERE id = %s',
+                    (name, description, ingredients, steps, recipe_id))
+        db.commit()
+        db.close()
+
+        return redirect(url_for('home'))  # Redireciona de volta para a home após editar
+
+    db.close()
+    return render_template('editar_receita.html', recipe=recipe, user_id=session['user_id'])
 
 # Rota para buscar ingredientes do banco de dados
 @app.route('/buscar_ingredientes', methods=['GET'])

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <title>Editar Receita</title>
+</head>
+<body class="editar-receita">
+    <div class="container-editarReceita">
+        <h2 style="text-align: center;">Editar Receita</h2>
+
+        <form method="POST">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" value="{{ recipe['name'] }}" required>
+
+            <label for="description">Descrição:</label>
+            <textarea id="description" name="description" required>{{ recipe['description'] }}</textarea>
+
+            <label for="ingredients">Ingredientes:</label>
+            <textarea id="ingredients" name="ingredients" required>{{ recipe['ingredients'] }}</textarea>
+
+            <label for="steps">Modo de Preparo:</label>
+            <textarea id="steps" name="steps" required>{{ recipe['steps'] }}</textarea>
+
+            <button type="submit">Salvar Alterações</button>
+        </form>
+    </div>
+
+    <a href="{{ url_for('home') }}">Voltar para as receitas</a>
+</body>
+</html>

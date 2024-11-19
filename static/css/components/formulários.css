@@ -192,13 +192,14 @@ textarea:focus::placeholder {
 }
 
 
-input#ingredient{
+input#ingredient {
     width: 20%;
     height: 20%;
 
 }
 
-input#quantity{
+input#quantity {
     width: 20%;
     height: 20%;
 }
+
