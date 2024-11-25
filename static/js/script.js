@@ -114,7 +114,6 @@ function showRecipeDetails(recipe) {
 }
 
 
-
 function filterRecipes() {
     const searchInput = document.getElementById('search-input').value.toLowerCase();
     const recipes = document.querySelectorAll('.recipe-card');
@@ -151,7 +150,6 @@ function loadAccountInfo() {
         })
         .catch(error => console.error('Erro ao carregar informações da conta:', error));
 }
-
 
 // Chamando a função de carregar informações da conta quando a página é carregada
 window.onload = function () {
@@ -257,7 +255,6 @@ async function fetchNutritionDataWithQuantity(ingredient, quantity) {
 
     return await response.json();
 }
-
 
 function displayNutritionResults(data) {
     const resultDiv = document.getElementById('result');
