@@ -104,9 +104,15 @@ function showRecipeDetails(recipe) {
         <h3>${recipe.name}</h3>
         <p><strong>Descrição:</strong> ${recipe.description}</p>
         <p><strong>Ingredientes:</strong><br>${recipe.ingredients.replace(/\n/g, '<br>')}</p>
-        <p><strong>Modo de Preparo:</strong><br>${recipe.steps.replace(/\n/g, '<br>')}</p>`;
+        <p><strong>Modo de Preparo:</strong><br>${recipe.steps.replace(/\n/g, '<br>')}</p>
+        <h4>Informações Nutricionais Totais:</h4>
+        <p><strong>Calorias:</strong> ${recipe.total_calories} kcal</p>
+        <p><strong>Proteínas:</strong> ${recipe.total_proteins} g</p>
+        <p><strong>Carboidratos:</strong> ${recipe.total_carbs} g</p>
+    `;
     showSection('detalhes-receita');
 }
+
 
 
 function filterRecipes() {
@@ -130,20 +136,22 @@ function loadAccountInfo() {
     fetch('/get_account_info')
         .then(response => {
             if (!response.ok) {
-                throw new Error('Erro ao carregar informações da conta');
+                throw new Error(`Erro ao carregar informações da conta: ${response.statusText}`);
             }
             return response.json();
         })
         .then(accountInfo => {
+            console.log('Dados recebidos:', accountInfo);
             if (accountInfo.error) {
                 console.error(accountInfo.error);
                 return;
             }
-            document.getElementById('account-name').textContent = accountInfo.name;
-            document.getElementById('account-email').textContent = accountInfo.email;
+            document.getElementById('account-name').textContent = accountInfo.name || 'Nome não encontrado';
+            document.getElementById('account-email').textContent = accountInfo.email || 'Email não encontrado';
         })
         .catch(error => console.error('Erro ao carregar informações da conta:', error));
 }
+
 
 // Chamando a função de carregar informações da conta quando a página é carregada
 window.onload = function () {
@@ -212,28 +220,35 @@ fetchIngredientSuggestions();
 async function calculateNutrition(event) {
     event.preventDefault();
 
-    const ingredient = document.getElementById('ingredient').value;
-    const quantity = document.getElementById('quantity').value;
+    const ingredient = document.getElementById('ingredient').value.trim();
+    const quantity = parseFloat(document.getElementById('quantity').value);
+
+    if (!ingredient || isNaN(quantity) || quantity <= 0) {
+        alert('Por favor, insira um ingrediente válido e uma quantidade maior que zero.');
+        return;
+    }
 
     const resultDiv = document.getElementById('result');
     resultDiv.innerHTML = '<p>Calculando...</p>';
 
     try {
-        // Enviar o ingrediente e a quantidade para o backend para calcular
-        const nutritionData = await fetchNutritionData(ingredient, quantity);
-        displayNutritionResults(nutritionData);
+        const nutritionData = await fetchNutritionDataWithQuantity(ingredient, quantity); // Usando quantidade real
+        if (nutritionData) {
+            displayNutritionResults(nutritionData);
+        }
     } catch (error) {
         resultDiv.innerHTML = `<p>Erro ao calcular: ${error.message}</p>`;
     }
 }
 
-async function fetchNutritionData(ingredient, quantity) {
+
+async function fetchNutritionDataWithQuantity(ingredient, quantity) {
     const response = await fetch('/calcular_nutricional', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ingrediente: ingredient, quantidade: quantity })
+        body: JSON.stringify({ ingrediente: ingredient, quantidade: quantity }) // Envia a quantidade real
     });
 
     if (!response.ok) {
@@ -242,6 +257,7 @@ async function fetchNutritionData(ingredient, quantity) {
 
     return await response.json();
 }
+
 
 function displayNutritionResults(data) {
     const resultDiv = document.getElementById('result');
@@ -287,3 +303,133 @@ document.getElementById('remove-image').addEventListener('click', function () {
     // Limpa o campo de upload
     document.getElementById('image-upload').value = '';
 });
+
+
+
+// Lista para armazenar os ingredientes adicionados e suas informações nutricionais
+let addedIngredients = [];
+let totalCalories = 0;
+let totalProteins = 0;
+let totalCarbs = 0;
+
+// Função para adicionar um ingrediente ao calculation-card
+async function addIngredient() {
+    const ingredient = document.getElementById('ingredient').value.trim();
+    const quantity = parseFloat(document.getElementById('quantity').value);
+
+    if (!ingredient || isNaN(quantity) || quantity <= 0) {
+        alert('Por favor, insira um ingrediente válido e uma quantidade maior que zero.');
+        return;
+    }
+
+    const nutritionData = await fetchNutritionDataBase(ingredient); // Usando 100g como base
+    if (!nutritionData) {
+        alert('Erro ao buscar dados nutricionais.');
+        return;
+    }
+
+    // Cálculos ajustados com a quantidade inserida
+    const quantityFactor = quantity / 100;
+
+    addedIngredients.push({
+        ingredient,
+        quantity,
+        calories: nutritionData.calorias * quantityFactor,
+        proteins: nutritionData.proteinas * quantityFactor,
+        carbs: nutritionData.carboidratos * quantityFactor
+    });
+
+    updateCalculationCards();
+    updateTotalNutrition();
+
+    // Limpa os campos do formulário
+    document.getElementById('ingredient').value = '';
+    document.getElementById('quantity').value = '';
+}
+
+
+// Função para atualizar o container dos calculation-cards
+function updateCalculationCards() {
+    const cardsContainer = document.getElementById('calculation-cards');
+    cardsContainer.innerHTML = ''; // Limpa o container
+
+    addedIngredients.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'calculation-card';
+        card.innerHTML = `
+            <p><strong>Ingrediente:</strong> ${item.ingredient}</p>
+            <p><strong>Quantidade:</strong> ${item.quantity} g</p>
+            <p><strong>Calorias:</strong> ${item.calories.toFixed(2)} kcal</p>
+            <p><strong>Proteínas:</strong> ${item.proteins.toFixed(2)} g</p>
+            <p><strong>Carboidratos:</strong> ${item.carbs.toFixed(2)} g</p>
+            <button onclick="removeIngredient(${index})">Remover</button>
+        `;
+        cardsContainer.appendChild(card);
+    });
+}
+
+// Função para calcular os totais de calorias, proteínas e carboidratos
+function updateTotalNutrition() {
+    totalCalories = addedIngredients.reduce((total, item) => total + item.calories, 0);
+    totalProteins = addedIngredients.reduce((total, item) => total + item.proteins, 0);
+    totalCarbs = addedIngredients.reduce((total, item) => total + item.carbs, 0);
+
+    const resultDiv = document.getElementById('result');
+    resultDiv.innerHTML = `
+        <h3>Totais Nutricionais:</h3>
+        <p><strong>Calorias:</strong> ${totalCalories.toFixed(2)} kcal</p>
+        <p><strong>Proteínas:</strong> ${totalProteins.toFixed(2)} g</p>
+        <p><strong>Carboidratos:</strong> ${totalCarbs.toFixed(2)} g</p>
+    `;
+}
+
+// Função para remover um ingrediente do card
+function removeIngredient(index) {
+    addedIngredients.splice(index, 1); // Remove o item da lista
+    updateCalculationCards(); // Atualiza os cards
+    updateTotalNutrition(); // Atualiza os totais
+}
+
+// Função para buscar dados nutricionais de um ingrediente
+// Para cálculos fixos com base em 100g
+async function fetchNutritionDataBase(ingredient) {
+    try {
+        const response = await fetch('/calcular_nutricional', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ ingrediente: ingredient, quantidade: 100 }) // Envia a quantidade base de 100g
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao buscar dados nutricionais');
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error(error.message);
+        return null;
+    }
+}
+
+
+// Função para criar a receita a partir dos ingredientes adicionados
+function createRecipeFromIngredients() {
+    if (addedIngredients.length === 0) {
+        alert('Você precisa adicionar pelo menos um ingrediente antes de criar a receita!');
+        return;
+    }
+
+    // Redireciona para a aba de adicionar receita
+    showSection('compartilhar-receitas');
+
+    // Preenche a lista de ingredientes no formulário de adicionar receita
+    const ingredientsList = document.getElementById('recipe-ingredients');
+    ingredientsList.value = ''; // Limpa o campo antes de adicionar os ingredientes
+
+    addedIngredients.forEach(item => {
+        ingredientsList.value += `${item.quantity}:g ${item.ingredient}\n`;
+    });
+}
+

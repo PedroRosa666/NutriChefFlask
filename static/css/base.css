@@ -173,11 +173,73 @@ body.editar-receita {
     background-color: var(--hover-color); /* Cor ao passar o mouse */
 }
 
-a {
+
+#calculation-cards-container {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.calculation-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.calculation-card p {
+    margin: 5px 0;
+}
+
+.calculation-card button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.calculation-card button:hover {
+    background-color: #ff1a1a;
+}
+
+
+#result {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+#result h3 {
+    margin-bottom: 10px;
+}
+
+#result p {
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+
+.create-recipe-container {
+    margin-top: 20px;
     text-align: center;
-    display: block; /* Faz o link ocupar toda a largura */
-    margin-top: 20px; /* Margem acima do link */
-    color: var(--primary-color); /* Cor do link */
-    text-decoration: none; /* Remove sublinhado */
-    font-weight: bold; /* Texto em negrito */
+}
+
+.create-recipe-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.create-recipe-button:hover {
+    background-color: #218838;
 }

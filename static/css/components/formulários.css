@@ -63,9 +63,9 @@
     border: 1px solid var(--border-color);
     padding: 20px;
     width: calc(33.333% - 20px);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.212);
     border-radius: 10px;
-    transition: transform 0.3s;
+    transition: transform 0.4s;
     cursor: pointer;
 }
 
@@ -85,7 +85,7 @@
     border-radius: 5px;
     max-width: 600px;
     margin: 20px auto;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.235);
 }
 
 .recipe-detail h3 {

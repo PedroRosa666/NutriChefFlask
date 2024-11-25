@@ -55,17 +55,33 @@
       <section id="calculadora" class="calculator">
         <h2>Cálculos Nutricionais</h2>
         <form id="nutritionForm" onsubmit="calculateNutrition(event)">
-          <label for="ingredient">Ingrediente:</label>
-          <input type="text" id="ingredient" placeholder="Digite um ingrediente" autocomplete="on" />
-          <div id="suggestions"></div><br />
-          <!-- Onde colocar a parte de adição de ingrediente -->
-          <label for="quantity">Quantidade:</label>
-          <input type="number" id="quantity" name="quantity" placeholder="Digite a quantidade" required /> <br /><br />
-          <button type="submit">Calcular</button>
-          <button type="button" class="ingredient-add">Adicionar ingredinte</button>
+            <label for="ingredient">Ingrediente:</label>
+            <input type="text" id="ingredient" placeholder="Digite um ingrediente" autocomplete="on" />
+            <div id="suggestions"></div><br />
+    
+            <label for="quantity">Quantidade:</label>
+            <input type="number" id="quantity" name="quantity" placeholder="Digite a quantidade" required /> <br /><br />
+            <button type="submit">Calcular</button>
+            <button type="button" class="ingredient-add" onclick="addIngredient()">Adicionar Ingrediente</button>
         </form>
+    
         <div id="result"></div>
-      </section>
+    
+        <div id="calculation-cards-container">
+            <h3>Ingredientes Adicionados:</h3>
+            <div id="calculation-cards">
+                <!-- Os cards serão inseridos dinamicamente aqui -->
+            </div>
+        </div>
+    
+        <!-- Botão para criar receita -->
+        <div class="create-recipe-container">
+            <button type="button" class="create-recipe-button" onclick="createRecipeFromIngredients()">Criar Receita</button>
+        </div>
+    </section>
+    
+
+
       <section id="conta" class="contact">
         <h2>Minha Conta</h2>
         <div class="account-info">
