@@ -35,7 +35,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\pehen\OneDrive\Área de Trabalho\NutriChefFlask\venv"
+VIRTUAL_ENV="C:\Users\pehen\OneDrive\Área de Trabalho\NutriChefFlask\NutriChefFlask\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

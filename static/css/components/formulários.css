@@ -38,17 +38,20 @@
     width: 96%;
 }
 
-.recipe-form input,
-.recipe-form textarea,
-.contact-form input,
-.contact-form textarea,
-.nutrition-form input {
-    margin-bottom: 5px;
-    padding: 10px;
+.recipe-form input, .recipe-form textarea, .contact-form input, .contact-form textarea, .nutrition-form input {
+    margin-bottom: 10px; /* Aumentei a margem inferior para mais espaço */
+    padding: 12px; /* Aumentei o padding para um espaço interno mais confortável */
     font-size: 1rem;
-    border: 3px solid var(--border-color);
-    border-radius: 25px;
+    border: 2px solid var(--border-color); /* Reduzi a espessura da borda */
+    border-radius: 30px; /* Aumentei o raio da borda para bordas mais arredondadas */
     width: 48%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adicionei uma sombra para profundidade */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Adicionei uma transição suave */
+}
+
+.recipe-form input:focus, .recipe-form textarea:focus, .contact-form input:focus, .contact-form textarea:focus, .nutrition-form input:focus {
+    border-color: var(--focus-color); /* Cor da borda ao focar */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Aumenta a sombra ao focar */
 }
 
 .recipe-list {
@@ -201,4 +204,3 @@ input#quantity {
     width: 20%;
     height: 20%;
 }
-

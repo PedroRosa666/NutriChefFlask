@@ -11,7 +11,7 @@ def connect_db():
     return psycopg2.connect(
         host="localhost",
         user="postgres",
-        password="pedro027",
+        password="TesteSenha",
         database="NutriChefDB"
     )
 
@@ -157,7 +157,6 @@ def get_recipes():
         return jsonify({'error': 'Erro ao obter as receitas'}), 500
 
 
-
 # Rota para deletar receita
 @app.route('/delete_recipe/<int:recipe_id>', methods=['DELETE'])
 def delete_recipe(recipe_id):
@@ -230,8 +229,6 @@ def buscar_ingredientes():
         print(f"Erro ao buscar ingredientes: {e}")
         return jsonify({'error': 'Erro ao buscar dados nutricionais'}), 500
     
-    
-    
 
 @app.route('/get_account_info', methods=['GET'])
 def get_account_info():
@@ -264,7 +261,6 @@ def get_account_info():
     except Exception as e:
         print(f'Erro inesperado: {e}')
         return jsonify({'error': 'Erro inesperado ao processar a solicitação'}), 500
-
 
 
 # Rota para calcular valores nutricionais
@@ -327,7 +323,6 @@ def calcular_nutricional():
     except Exception as e:
         print(f"Erro inesperado: {e}")  # Debug
         return jsonify({'error': 'Erro interno ao calcular os valores nutricionais'}), 500
-
 
 
 # Rota para logout

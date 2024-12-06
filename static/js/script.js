@@ -426,7 +426,7 @@ function createRecipeFromIngredients() {
     ingredientsList.value = ''; // Limpa o campo antes de adicionar os ingredientes
 
     addedIngredients.forEach(item => {
-        ingredientsList.value += `${item.quantity}:g ${item.ingredient}\n`;
+        ingredientsList.value += `${item.quantity}g ${item.ingredient}\n`;
     });
 }
 
