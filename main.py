@@ -30,6 +30,12 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        
+         # Usuário admin fixo
+        if username == 'admin' and password == 'admin123':
+            session['username'] = 'admin'
+            session['user_id'] = 0  # ID fictício para admin
+            return redirect(url_for('home'))
 
         db = connect_db()
         cursor = db.cursor(cursor_factory=RealDictCursor)
