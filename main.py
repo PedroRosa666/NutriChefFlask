@@ -11,8 +11,8 @@ def connect_db():
     return psycopg2.connect(
         host="localhost",
         user="postgres",
-        password="TesteSenha",
-        database="NutriChefDB"
+        password="pedro027",
+        database="NutriChefBD"
     )
 
 
