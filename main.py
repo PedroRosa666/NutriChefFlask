@@ -98,13 +98,14 @@ def add_recipe():
     description = recipe_data['description']
     ingredients = recipe_data['ingredients']
     steps = recipe_data['steps']
+    image = recipe_data.get('image')  # Novo campo
 
     try:
         db = connect_db()
         cursor = db.cursor()
         cursor.execute(
-            'INSERT INTO recipes (name, description, ingredients, steps, user_id) VALUES (%s, %s, %s, %s, %s)',
-            (name, description, ingredients, steps, session['user_id'])
+            'INSERT INTO recipes (name, description, ingredients, steps, user_id, image) VALUES (%s, %s, %s, %s, %s, %s)',
+            (name, description, ingredients, steps, session['user_id'], image)
         )
         db.commit()
         db.close()

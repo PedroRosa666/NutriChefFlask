@@ -39,7 +39,8 @@
           <div class="recipe-ingredients"></div>
           <textarea id="recipe-steps" name="recipe-steps" placeholder="Modo de Preparo" required></textarea><br />
           <div class="form-group">
-            <input type="file" id="image-upload" accept="image/*" />
+                        <!-- Adicione este campo no formulário de adicionar receita -->
+                        <input type="url" id="recipe-image-url" name="recipe-image-url" placeholder="URL da imagem da receita" />
             <div id="recipe-image">
               <img id="recipe-image-preview" src="" alt="Preview da Receita" style="display:none;" />
               <button type="button" id="remove-image" style="display:none;">Excluir Imagem</button>

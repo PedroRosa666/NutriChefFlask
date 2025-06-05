@@ -80,6 +80,13 @@
     color: var(--primary-color);
 }
 
+.recipe-card p {
+    word-break: break-word;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
 .recipe-detail {
     background-color: #fff;
     border: 1px solid var(--border-color);

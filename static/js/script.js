@@ -16,12 +16,14 @@ function submitRecipe(event) {
     const description = document.getElementById('recipe-description').value;
     const ingredients = document.getElementById('recipe-ingredients').value;
     const steps = document.getElementById('recipe-steps').value;
+    const imageUrl = document.getElementById('recipe-image-url').value; // Novo campo
 
     const recipeData = {
         name: name,
         description: description,
         ingredients: ingredients,
-        steps: steps
+        steps: steps,
+        image: imageUrl // Inclui a URL da imagem
     };
 
     fetch('/add_recipe', {
@@ -31,20 +33,20 @@ function submitRecipe(event) {
         },
         body: JSON.stringify(recipeData)
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.message) {
-                document.querySelector('.recipe-form').reset();
-                loadRecipes();  // Recarrega as receitas para mostrar a nova adição
-                showSection('receitas');
-            } else {
-                alert(data.error || 'Erro ao adicionar a receita.');
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao adicionar a receita:', error);
-            alert('Erro ao adicionar a receita.');
-        });
+    .then(response => response.json())
+    .then(data => {
+        if (data.message) {
+            document.querySelector('.recipe-form').reset();
+            loadRecipes();
+            showSection('receitas');
+        } else {
+            alert(data.error || 'Erro ao adicionar a receita.');
+        }
+    })
+    .catch(error => {
+        console.error('Erro ao adicionar a receita:', error);
+        alert('Erro ao adicionar a receita.');
+    });
 }
 
 function loadRecipes() {
@@ -58,8 +60,9 @@ function loadRecipes() {
                 const recipeCard = document.createElement('div');
                 recipeCard.className = 'recipe-card';
                 recipeCard.innerHTML = `
-                    <h3>${recipe.name}</h3>
-                    <p>${recipe.description}</p>
+                    ${recipe.image ? `<img src="${recipe.image}" alt="Imagem da Receita" class="recipe-card-img" style="width:100%;max-height:180px;object-fit:cover;border-radius:8px 8px 0 0;">` : ''}
+                    <h3>${recipe.name}</h3>     
+                    <p>${recipe.description.replace(/\n/g, '<br>')}</p>
                     <button class="edit-button" onclick="editRecipe(${recipe.id})">Editar</button>
                     <button class="remove-button" onclick="deleteRecipe(${recipe.id})">Excluir</button>
                 `;
@@ -102,7 +105,7 @@ function showRecipeDetails(recipe) {
     const detailDiv = document.getElementById('recipe-detail');
     detailDiv.innerHTML = `
         <h3>${recipe.name}</h3>
-        <p><strong>Descrição:</strong> ${recipe.description}</p>
+        <p><strong>Descrição:</strong>${recipe.description.replace(/\n/g, '<br>')}</p>
         <p><strong>Ingredientes:</strong><br>${recipe.ingredients.replace(/\n/g, '<br>')}</p>
         <p><strong>Modo de Preparo:</strong><br>${recipe.steps.replace(/\n/g, '<br>')}</p>
         <h4>Informações Nutricionais Totais:</h4>
@@ -287,6 +290,32 @@ document.getElementById('image-upload').addEventListener('change', function (eve
         reader.readAsDataURL(file); // Lê o arquivo como URL de dados
     }
 });
+
+
+document.getElementById('recipe-image-url').addEventListener('input', function () {
+    const url = this.value;
+    const img = document.getElementById('recipe-image-preview');
+    const removeBtn = document.getElementById('remove-image');
+    if (url) {
+        img.src = url;
+        img.style.display = 'block';
+        removeBtn.style.display = 'block';
+    } else {
+        img.src = '';
+        img.style.display = 'none';
+        removeBtn.style.display = 'none';
+    }
+});
+
+document.getElementById('remove-image').addEventListener('click', function () {
+    document.getElementById('recipe-image-url').value = '';
+    document.getElementById('recipe-image-preview').src = '';
+    document.getElementById('recipe-image-preview').style.display = 'none';
+    this.style.display = 'none';
+});
+
+
+
 
 // Adiciona evento de clique para o botão de excluir imagem
 document.getElementById('remove-image').addEventListener('click', function () {
